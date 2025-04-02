@@ -9,11 +9,15 @@ export const AddRow = ({ addNewCountable }) => {
 
   return (
     <View style={CommonStyles.row}>
-      <TextInput placeholder="Enter name" onChangeText={setName} />
+      <TextInput placeholder="Enter name" value={name} onChangeText={setName} />
       <CountableButton
         label="Add"
         submit={() => {
+          if (name.trim() === "") {
+            return;
+          }
           addNewCountable(name);
+          setName("");
         }}
       />
     </View>

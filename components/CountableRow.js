@@ -1,9 +1,14 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 import { CountableButton } from "./CountableButton";
 import { CommonStyles } from "../styles/CommonStyles";
 
-export const CountableRow = ({ countable, changeCount, index }) => (
+export const CountableRow = ({
+  countable,
+  changeCount,
+  removeCountable,
+  index,
+}) => (
   <View style={CommonStyles.row}>
     <View style={styles.nameColumn}>
       <Text style={CommonStyles.textItem}>{countable.name}</Text>
@@ -22,6 +27,9 @@ export const CountableRow = ({ countable, changeCount, index }) => (
           changeCount(-1, index);
         }}
       />
+      <TouchableOpacity onPress={() => removeCountable(index)}>
+        <Text style={styles.deleteButton}>Delete</Text>
+      </TouchableOpacity>
     </View>
   </View>
 );
@@ -33,5 +41,10 @@ const styles = StyleSheet.create({
   },
   buttonColumn: {
     flex: 0.2,
+  },
+  deleteButton: {
+    color: "red",
+    fontWeight: "bold",
+    marginTop: 1,
   },
 });
